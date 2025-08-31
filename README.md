@@ -1,4 +1,5 @@
-<img width="1000" height="667" alt="wind_turbine_monitoring_system" src="https://github.com/user-attachments/assets/6db484e2-d92c-472b-b569-cc5d263ad258" />
+
+<img width="1000" height="667" alt="wind_turbine_predictive_maintenance_system" src="https://github.com/user-attachments/assets/94da873b-6059-4a08-a359-6216dc842f66" />
 
 # Wind Turbine Predictive Maintenance System
 
@@ -61,7 +62,7 @@ cd build/simulation
 
 When you run the integrated system, you'll see a real-time dashboard showing task scheduling in action:
 
-<img width="437" height="812" alt="dashboard" src="https://github.com/user-attachments/assets/c7b9b953-d3ed-447a-87a6-e7c7373a6a1f" />
+<img width="437" height="812" alt="dashboard" src="https://github.com/user-attachments/assets/6085c0dd-14d5-47eb-8b30-c51a824efc3d" />
 
 ### System Features
 - **Real-time monitoring**: Continuous sensor data acquisition and processing
