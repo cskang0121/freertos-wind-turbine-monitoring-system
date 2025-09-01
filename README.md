@@ -1,5 +1,6 @@
 
 <img width="1000" height="667" alt="wind_turbine_predictive_maintenance_system" src="https://github.com/user-attachments/assets/94da873b-6059-4a08-a359-6216dc842f66" />
+<i>Photo by Rabih Shasha on Unsplash</i>
 
 # Wind Turbine Predictive Maintenance System
 
