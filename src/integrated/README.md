@@ -1,8 +1,10 @@
-# Wind Turbine Monitor - Integrated System
+# Wind Turbine Monitor - Integrated System (POSIX Simulation)
 
 ## Overview
 
-This is the complete integrated implementation of the Wind Turbine Predictive Maintenance System, demonstrating all 8 FreeRTOS capabilities:
+This is the complete integrated **simulation** of the Wind Turbine Predictive Maintenance System, demonstrating all 8 FreeRTOS capabilities in a POSIX environment (Mac/Linux only). **Note: This is an educational implementation running in simulation mode, not production-ready hardware code.**
+
+The system demonstrates:
 - **Capability 1: Task Scheduling with Preemption** - Multiple priority-based tasks
 - **Capability 2: Interrupt Service Routines (ISR)** - 100Hz sensor interrupts with deferred processing
 - **Capability 3: Queue-Based Communication** - Inter-task data passing via FreeRTOS queues

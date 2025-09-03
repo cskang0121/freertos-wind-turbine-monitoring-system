@@ -1,6 +1,6 @@
 /*
  * FreeRTOS Configuration for Wind Turbine Predictive Maintenance System
- * Target: AmebaPro2 (RTL8735B) and Mac/Linux Simulation
+ * Target: Mac/Linux POSIX Simulation (Educational Purpose)
  * 
  * This configuration demonstrates all 8 core capabilities:
  * 1. Task Scheduling with Preemption
@@ -32,7 +32,8 @@
 #ifdef SIMULATION_MODE
     #define configCPU_CLOCK_HZ                  ((unsigned long)1000000)  // 1MHz for simulation
 #else
-    #define configCPU_CLOCK_HZ                  ((unsigned long)200000000) // 200MHz for AmebaPro2
+    /* Hardware configuration would go here if implemented */
+    #define configCPU_CLOCK_HZ                  ((unsigned long)200000000) // Example: 200MHz
 #endif
 #define configTICK_RATE_HZ                      ((TickType_t)1000)      // 1ms tick rate
 #define configMAX_TASK_NAME_LEN                 16                       // Task name length
@@ -47,7 +48,7 @@
 /* Stack Sizes (in words, not bytes) */
 #define configMINIMAL_STACK_SIZE                ((unsigned short)128)    // Minimal stack
 #define configSAFETY_TASK_STACK_SIZE            ((unsigned short)512)    // 2KB for safety task
-#define configANOMALY_TASK_STACK_SIZE           ((unsigned short)2048)   // 8KB for AI task
+#define configANOMALY_TASK_STACK_SIZE           ((unsigned short)2048)   // 8KB for anomaly task
 #define configNETWORK_TASK_STACK_SIZE           ((unsigned short)1024)   // 4KB for network
 #define configSENSOR_TASK_STACK_SIZE            ((unsigned short)512)    // 2KB for sensors
 
@@ -60,7 +61,7 @@
     #define configKERNEL_INTERRUPT_PRIORITY      255  // Lowest priority for simulation
     #define configMAX_SYSCALL_INTERRUPT_PRIORITY 191  // Higher priority for simulation
 #else
-    /* AmebaPro2 Cortex-M33 specific */
+    /* Example hardware configuration (not implemented) */
     #define configPRIO_BITS                      4    // 4 priority bits
     #define configLIBRARY_LOWEST_INTERRUPT_PRIORITY    15
     #define configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY   5
@@ -117,7 +118,8 @@
 #else
     /* Use AmebaPro2 hardware timer */
     #define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS() 
-    #define portGET_RUN_TIME_COUNTER_VALUE() 0  // TODO: Implement with hardware timer
+    /* Note: Hardware timer implementation would be required for real hardware */
+    #define portGET_RUN_TIME_COUNTER_VALUE() 0  // Placeholder for hardware implementation
 #endif
 
 /* Hook Function Prototypes */
@@ -147,8 +149,8 @@
 #define INCLUDE_xTaskResumeFromISR              1
 #define INCLUDE_xQueueGetMutexHolder            1
 
-/* Memory Protection Unit (MPU) Configuration */
-#define configTOTAL_MPU_REGIONS                 8   // Cortex-M33 has 8 MPU regions
+/* Memory Protection Unit (MPU) Configuration (not used in simulation) */
+#define configTOTAL_MPU_REGIONS                 8   // Example: 8 MPU regions
 #define configTEX_S_C_B_FLASH                   0x07UL
 #define configTEX_S_C_B_SRAM                    0x07UL
 

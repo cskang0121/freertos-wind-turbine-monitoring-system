@@ -1,11 +1,11 @@
 # Learning Progress Tracker
 
-> Track your journey through the 8 core FreeRTOS capabilities and TinyML implementation
+> Track your journey through the 8 core FreeRTOS capabilities
 
 ## Overall Progress
 
 ```
-[####################] 100% Complete (8/8 capabilities)
+[###################-] 95% Complete (8/8 FreeRTOS capabilities implemented, simulation only)
 ```
 
 ## Capability Checklist
@@ -228,18 +228,18 @@
 - [x] Update all documentation for project completion
 
 **Key Learning Outcomes**:
-- [x] Reduce power consumption (52% savings achieved with real measurements)
+- [x] Reduce power consumption (simulated ~50% savings in POSIX environment)
 - [x] Manage peripheral states (pre/post sleep processing implemented)
 - [x] Coordinate system sleep (wake source tracking and management)
-- [x] Implement real FreeRTOS idle hooks with actual measurement (372K+ idle entries)
+- [x] Implement FreeRTOS idle hooks with simulation measurements
 - [x] Design adaptive power-aware application behavior
 - [x] Create comprehensive power statistics tracking and monitoring
 - [x] Build production-ready power management patterns for embedded systems
 
 **Integrated System Features**:
 - Real-time power management dashboard with POWER STATUS section
-- Actual FreeRTOS idle hook measurements showing 372,005+ idle entries
-- Calculated 52% power savings from real 74% idle time monitoring
+- Simulated idle hook measurements in POSIX environment
+- Estimated ~50% power savings based on idle time simulation
 - Adaptive dashboard refresh rate reducing to 0.5Hz when power savings >50%
 - Pre/post sleep processing hooks ready for real hardware peripheral management
 - Comprehensive power statistics tracking (idle entries, sleep attempts, wake events)
@@ -255,23 +255,14 @@
 
 ## Anomaly Detection Implementation
 
-### Threshold-Based Detection (Current)
-- [ ] Implement moving average baseline
-- [ ] Calculate standard deviation thresholds
-- [ ] Add multi-sensor correlation
-- [ ] Create modular detector interface
+### Threshold-Based Detection (Implemented)
+- [x] Basic threshold checking for vibration, temperature, RPM
+- [x] Health score calculation based on sensor values
+- [x] Alert generation for anomalies
+- [x] Integration with dashboard display
 
-### ML-Ready Architecture
-- [ ] Design pluggable detection engine
-- [ ] Abstract detector interface
-- [ ] Performance comparison framework
-- [ ] Document ML upgrade path
-
-### Future ML Integration (Optional)
-- [ ] Train model offline (Python)
-- [ ] Quantize for embedded use
-- [ ] Implement inference engine
-- [ ] Validate against threshold method
+### Future Enhancements (Not Implemented)
+See [Future Enhancements](docs/FUTURE_ENHANCEMENTS.md) for planned ML integration and advanced detection algorithms.
 
 ---
 

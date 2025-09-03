@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 # Project name and version
-project(WindTurbinePredictor VERSION 1.0.0 LANGUAGES C)
+project(WindTurbinePredictor VERSION 1.0.0-sim LANGUAGES C)
 
 # Set C standard
 set(CMAKE_C_STANDARD 11)

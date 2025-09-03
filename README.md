@@ -2,7 +2,9 @@
 
 # Wind Turbine Predictive Maintenance System
 
-> A comprehensive FreeRTOS-based predictive maintenance system for wind turbines, featuring modular anomaly detection with real-time monitoring. Built with generic FreeRTOS v10.4.3 using POSIX port for Mac/Linux simulation, with hardware-ready architecture for future deployment.
+> A comprehensive FreeRTOS-based predictive maintenance system for wind turbines, featuring modular anomaly detection with real-time monitoring. Built with generic FreeRTOS v10.4.3 using POSIX port for Mac/Linux simulation.
+
+**NOTE: This is a simulation-only implementation for educational purposes.**
 
 ## Learning Journey
 
@@ -11,8 +13,8 @@ This project demonstrates mastery of embedded systems development through 8 core
 ## Project Goals
 
 1. **Master FreeRTOS**: Deep understanding of RTOS concepts through practical implementation
-2. **Implement Anomaly Detection**: Modular detection system (threshold-based, ML-ready architecture)
-3. **Production-Ready Code**: Industry-standard architecture that scales from simulation to hardware
+2. **Implement Anomaly Detection**: Modular detection system (threshold-based implementation)
+3. **Educational Code**: Industry-standard patterns demonstrated in simulation
 4. **Real-World Application**: Solve actual predictive maintenance challenges in renewable energy
 
 ## System Architecture
@@ -25,12 +27,12 @@ This project demonstrates mastery of embedded systems development through 8 core
 |                    FreeRTOS Tasks                     |
 |   Safety | Sensor | Anomaly | Network | Logger        |
 +-------------------------------------------------------+
-|              Hardware Abstraction Layer               |
-|          Sensors | Network | Storage | Power          |
+|           Simulation Abstraction Layer                |
+|          [POSIX Port - Mac/Linux Only]                |
 +-------------------------------------------------------+
-|                  Platform Layer                       |
-|   [Generic FreeRTOS + POSIX Port (Mac/Linux)]         |
-|   [Future: AmebaPro2 or other hardware]               |
+|              Platform Layer                           |
+|        Generic FreeRTOS v10.4.3 (POSIX)               |
+|         **SIMULATION ONLY - NO HARDWARE**             |
 +-------------------------------------------------------+
 ```
 
@@ -68,7 +70,7 @@ When you run the integrated system, you'll see a real-time dashboard showing tas
 - **Automatic anomaly detection**: Threshold-based detection with statistical analysis  
 - **Live dashboard**: Real-time system metrics and health monitoring
 - **Multi-task coordination**: 5 concurrent tasks with priority-based scheduling
-- **Production-ready architecture**: Scales from simulation to embedded hardware
+- **Educational architecture**: Demonstrates RTOS concepts in simulation
 
 The system runs continuously without user interaction, automatically detecting anomalies and displaying live metrics.
 
@@ -88,17 +90,17 @@ pip install -r requirements.txt
 
 ### Platform Clarification
 
-**Current Implementation**: Generic FreeRTOS v10.4.3 with POSIX port
-- Runs on Mac/Linux for development
-- No hardware dependencies
-- Full FreeRTOS kernel (same as production)
-- Simulated sensors and peripherals
+**⚠️ IMPORTANT - SIMULATION ONLY**: 
+- This project runs ONLY in POSIX simulation on Mac/Linux
+- Uses generic FreeRTOS v10.4.3 with POSIX port
+- All sensors and peripherals are simulated
+- No actual hardware support implemented
+- Educational demonstration of FreeRTOS concepts
 
-**Future Hardware Support**: Code structure supports any FreeRTOS platform
-- AmebaPro2 (RTL8735B)
-- STM32
-- ESP32
-- Nordic nRF52
+**Potential Future Extensions** (not implemented):
+- Hardware ports would require significant code changes
+- Platform-specific drivers would need to be written
+- Hardware abstraction layer would need to be implemented
 
 ### Building and Running
 
@@ -127,7 +129,7 @@ git clone --branch V10.4.3 https://github.com/FreeRTOS/FreeRTOS-Kernel.git exter
 
 - **macOS**: Fully tested on macOS 15.x with POSIX port
 - **Linux**: Compatible with Ubuntu 20.04+
-- **Hardware**: Architecture ready for any FreeRTOS-supported MCU
+- **Hardware**: No hardware support - simulation only
 
 ### Known Issues Fixed
 
@@ -140,12 +142,12 @@ git clone --branch V10.4.3 https://github.com/FreeRTOS/FreeRTOS-Kernel.git exter
 ### 1. Task Scheduling with Preemption
 - **Console Demo**: Watch Safety task preempt others in real-time
 - **Implementation**: Priority-based scheduling with 5 tasks
-- **Validation**: < 100μs task switch time
+- **Validation**: ~100μs task switch time (simulation estimate)
 
 ### 2. Interrupt Service Routines with Deferred Processing
 - **Console Demo**: ISR triggers, deferred processing time displayed
 - **Implementation**: Minimal ISR, semaphore signaling
-- **Validation**: ISR to Task latency < 1ms
+- **Validation**: ISR to Task latency ~1ms (simulation estimate)
 
 ### 3. Queue-Based Producer-Consumer
 - **Console Demo**: Real-time queue utilization bars
@@ -180,26 +182,22 @@ git clone --branch V10.4.3 https://github.com/FreeRTOS/FreeRTOS-Kernel.git exter
 
 ## Anomaly Detection System
 
-### Modular Architecture (ML-Ready)
+### Current Implementation: Threshold-Based Detection
 
-The system uses a **pluggable detection engine** that can be easily swapped:
+The system implements simple threshold-based anomaly detection:
 
 ```c
-// Current: Threshold-based detection
+// Threshold-based detection (implemented)
 typedef struct {
     float vibration_threshold;  // 5.0 mm/s danger level
     float temp_threshold;       // 70°C warning level
     uint32_t rpm_min, rpm_max;  // 18-22 RPM normal range
 } ThresholdDetector_t;
-
-// Future: Can be replaced with ML model
-typedef struct {
-    float (*inference)(SensorData_t*);  // ML inference function
-    void* model_weights;                // Trained model data
-} MLDetector_t;
 ```
 
-### Current Implementation: Smart Thresholds
+**Note**: Machine learning capabilities are not implemented. This is a demonstration of basic threshold detection only.
+
+### Detection Features
 - Moving average baseline tracking
 - Standard deviation for dynamic thresholds
 - Trend analysis (increasing vibration over time)
@@ -214,15 +212,17 @@ Critical:   Vibration=8.2mm/s, Temp=68°C → Health: 31% 🔴
 
 ## Performance Metrics
 
-| Metric | Target | Achieved (Simulation) |
+| Metric | Target | Simulation Estimate* |
 |--------|--------|----------------------|
-| Task Switch Latency | < 100μs | 45μs |
-| ISR to Task Latency | < 1ms | 0.3ms |
-| Queue Efficiency | > 95% | 99.6% |
-| Memory Fragmentation | < 5% | 2% |
-| Stack Safety Margin | > 30% | All tasks > 50% (proactive monitoring) |
-| Power Saving | > 50% | 52% (372K+ idle entries, adaptive behavior) |
-| Detection Accuracy | > 90% | 94% (threshold-based) |
+| Task Switch Latency | < 100μs | ~50μs |
+| ISR to Task Latency | < 1ms | ~1ms |
+| Queue Efficiency | > 95% | ~95% |
+| Memory Fragmentation | < 5% | < 5% |
+| Stack Safety Margin | > 30% | > 30% |
+| Power Saving | > 50% | ~50% (simulated) |
+| Detection Accuracy | > 90% | Threshold-based only |
+
+*Note: These are POSIX simulation estimates, not real hardware measurements
 
 ## Project Structure
 
@@ -281,8 +281,8 @@ Track your learning journey in [LEARNING_PROGRESS.md](LEARNING_PROGRESS.md)
 # Build all examples
 ./scripts/build.sh simulation
 
-# Run integrated system (when complete)
-./build/simulation/wind_turbine_predictor
+# Run integrated system with full dashboard
+./build/simulation/src/integrated/turbine_monitor
 
 # Run individual capability examples
 ./build/simulation/examples/01_basic_tasks/basic_tasks_example
@@ -294,7 +294,7 @@ Track your learning journey in [LEARNING_PROGRESS.md](LEARNING_PROGRESS.md)
 
 - **Real-World Application**: Solves actual wind turbine maintenance challenges
 - **Complete System**: Not fragments, but a working monitoring system
-- **Production Patterns**: Code structure used in actual products
+- **Educational Patterns**: Industry-standard patterns demonstrated
 - **Transferable Skills**: Learn FreeRTOS concepts applicable everywhere
 - **Portfolio Ready**: Demonstrates embedded systems expertise
 
